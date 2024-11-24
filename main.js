@@ -1,3 +1,95 @@
+document.addEventListener("DOMContentLoaded", function() {
+    fetch('data.json')
+        .then(response => response.json())
+        .then(data => {
+            loadStruktur(data.struktur);
+            loadProgramKerja(data.programKerja);
+            loadKegiatan(data.kegiatan);
+            loadEkstrakurikuler(data.ekskul);
+        })
+        .catch(error => console.error('Error loading JSON:', error));
+
+    function loadStruktur(struktur) {
+        const strukturContainer = document.querySelector('#struktur .structure-content');
+
+        const listElement = document.createElement('ul');
+        listElement.className = 'structure-list';
+        struktur.members.forEach(member => {
+            const listItem = document.createElement('li');
+            listItem.textContent = member;
+            listElement.appendChild(listItem);
+        });
+    
+        strukturContainer.appendChild(listElement);
+    }
+
+    function loadProgramKerja(programKerja) {
+        const programContainer = document.querySelector('.program-kerja .swiper-wrapper');
+        programKerja.forEach(program => {
+            const slide = document.createElement('div');
+            slide.className = 'swiper-slide swiper-slide-proker';
+            slide.innerHTML = `
+                <div class="program-card">
+                    <div class="program-icon">
+                        <i class="${program.icon}"></i>
+                    </div>
+                    <h3 class="program-title">${program.title}</h3>
+                    <p class="program-description">${program.description}<br>${program.date}</p>
+                    <div class="program-status status-completed">${program.status}</div>
+                </div>
+            `;
+            programContainer.appendChild(slide);
+        });
+    }
+
+    function loadKegiatan(kegiatan) {
+        const kegiatanContainer = document.querySelector('#kegiatan .kegiatan-slider');
+        kegiatan.forEach(kegiatanItem => {
+            const slideCard = document.createElement('div');
+            slideCard.className = 'slide-card';
+            slideCard.innerHTML = `
+                <div class="w-full h-64 overflow-hidden">
+                    <img src="${kegiatanItem.image}" alt="${kegiatanItem.title}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-bold mb-4 text-teal-700">${kegiatanItem.title}</h3>
+                    <div class="content-wrapper" style="max-height: 150px;">
+                        <p class="text-gray-600 leading-relaxed">${kegiatanItem.description}</p>
+                        <div class="fade-overlay"></div>
+                    </div>
+                </div>
+
+            `;
+            kegiatanContainer.appendChild(slideCard);
+        });
+    }
+
+    function loadEkstrakurikuler(ekskul) {
+        const ekskulContainer = document.querySelector('#ekskul .ekskul-slider');
+        ekskul.forEach(ekskulItem => {
+            const ekskulCard = document.createElement('div');
+            ekskulCard.className = 'ekskul-card';
+            ekskulCard.innerHTML = `
+                <div class="w-full h-64 overflow-hidden">
+                    <img src="${ekskulItem.image}" alt="${ekskulItem.title}" class="w-full h-full object-cover">
+                </div>
+                <div class="p-8 flex flex-col flex-grow">
+                    <h3 class="text-2xl font-bold mb-4 text-teal-700">${ekskulItem.title}</h3>
+                    <div class="content-wrapper" style="max-height: 150px;">
+                        <p class="text-gray-600 leading-relaxed">${ekskulItem.description}</p>
+                        <div class="fade-overlay"></div>
+                    </div>
+                </div>
+                    <div class="ekskul-tags mt-auto">
+                        <span class="ekskul-tag">${ekskulItem.schedule.day}</span>
+                        <span class="ekskul-tag">${ekskulItem.schedule.time}</span>
+                </div>
+            `;
+            ekskulContainer.appendChild(ekskulCard);
+        });
+    }
+});
+
 document.addEventListener('DOMContentLoaded', function() {
     // Initialize navbar
     const navbar = document.getElementById('navbar');
