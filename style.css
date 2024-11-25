@@ -616,7 +616,7 @@ nav a:hover:after {
 .ekskul-slider {
     width: 100%;
     margin: 0 -15px;
-    visibility: hidden; /* Hide slider until initialized */
+    /* visibility: hidden; */
     touch-action: pan-y pinch-zoom;
     user-select: none;
     -webkit-user-select: no ne;
