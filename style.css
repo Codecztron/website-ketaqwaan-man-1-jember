@@ -385,7 +385,7 @@ nav a:hover:after {
 
 .program-status {
     padding: 10px 20px;
-    border-radius: 30px;
+    border-radius: 50px;
     font-size: 14px;
     font-weight: 600;
     display: inline-flex;
@@ -393,41 +393,6 @@ nav a:hover:after {
     gap: 8px;
     width: fit-content;
     margin-top: auto;
-}
-
-.status-ongoing {
-    background-color: #ebf5ff;
-    color: #0066ff;
-}
-
-.status-completed {
-    background-color: #ecfdf5;
-    color: #059669;
-}
-
-.status-planned {
-    background-color: #fff7ed;
-    color: #ea580c;
-}
-
-.program-status::before {
-    content: "";
-    width: 8px;
-    height: 8px;
-    border-radius: 50%;
-    display: inline-block;
-}
-
-.status-ongoing::before {
-    background-color: #0066ff;
-}
-
-.status-completed::before {
-    background-color: #059669;
-}
-
-.status-planned::before {
-    background-color: #ea580c;
 }
 
 .swiper-button-next-proker,
